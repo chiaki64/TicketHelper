@@ -2,6 +2,9 @@
 import TicketHelper.connect
 import TicketHelper.Station
 import urllib.request
+import ssl
+import sys
+import http.cookiejar
 
 
 if(not(TicketHelper.connect.connect())):
@@ -10,20 +13,22 @@ else:
     print("No network Connection.")
 
 pass
-TicketHelper.Station.TodayTime()
 
-print('1')
 
-from_station=TicketHelper.Station.StartStation()
-to_station=TicketHelper.Station.EndStation()
+#获取站点…&日期
+from_station = TicketHelper.Station.StartStation()
+to_station = TicketHelper.Station.EndStation()
+queryDate = TicketHelper.Station.TodayTime()
+#目标链接
+testurl='https://kyfw.12306.cn/otn/lcxxcx/query?purpose_codes=ADULT&queryDate='+queryDate+'&from_station='+'ZDS'+'&to_station='+'XKS'
+print(testurl)
 
-information=urllib.request.urlopen("http://www.chiaki.ml").read()
+#证书问题
+ssl._create_default_https_context = ssl._create_unverified_context
+information=urllib.request.urlopen(str(testurl)).read()
+
 print(information)
 
-
-#print("true")
-#IncompleteRead
-
-#选择输入方式
+#过滤结果
 
 #输出结果

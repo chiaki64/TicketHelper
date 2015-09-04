@@ -12,5 +12,7 @@ def EndStation():
 
 
 def TodayTime():
-    print(time.strftime("%Y-%m-%d"))
+    todaytime=time.strftime("%Y-%m-%d")
+    print(todaytime)
+    return todaytime
     pass

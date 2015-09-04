@@ -6,24 +6,8 @@ def connect():
       #urllib.request.close()
       if(is_online):
         return True
-'''
-
-
-def connect():
-    request=urllib.request.Request("http://www.baidu.com")
-    response = urllib.request.urlopen(request)
-    buff = response.read()
-    #....
-    html = buff.decode('utf-8')
-    response.close()
-    online = u'<title>' in html
-    if(online):
-        return True
-    else:
-        return False
-'''
-
-
+      else:
+          return False
 
 
 #print(connect())

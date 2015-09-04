@@ -1,34 +1,41 @@
-#åˆ¤æ–­ç½‘ç»œç¯å¢ƒ
+#!/usr/bin/env python
+# -*- coding: gbk -*
+
 import TicketHelper.connect
 import TicketHelper.Station
 import urllib.request
 import ssl
 import sys
-import http.cookiejar
+import http  #.cookiejar
 
-
+#ÅĞ¶ÏÍøÂç»·¾³
 if(not(TicketHelper.connect.connect())):
-    print("No network Connection.")
+    #print("No network Connection.")
     exit()
 else:
-    pass
+    #»ñÈ¡Õ¾µã&ÈÕÆÚ
+    from_station = TicketHelper.Station.StartStation()
+    to_station = TicketHelper.Station.EndStation()
+    queryDate = TicketHelper.Station.QueryDate()
 
-#è·å–ç«™ç‚¹â€¦&æ—¥æœŸ
-from_station = TicketHelper.Station.StartStation()
-to_station = TicketHelper.Station.EndStation()
-queryDate = TicketHelper.Station.TodayTime()
+    #Ä¿±êÁ´½Ó
+    testurl='https://kyfw.12306.cn/otn/lcxxcx/query?purpose_codes=ADULT&queryDate='+queryDate+'&from_station='+from_station+'&to_station='+to_station
+    print(testurl)
 
-#ç›®æ ‡é“¾æ¥
-testurl='https://kyfw.12306.cn/otn/lcxxcx/query?purpose_codes=ADULT&queryDate='+queryDate+'&from_station='+from_station+'&to_station='+to_station
-print(testurl)
+    #Ö¤ÊéÎÊÌâ
+    ssl._create_default_https_context = ssl._create_unverified_context
+    information = urllib.request.urlopen(str(testurl)).read()
 
-#è¯ä¹¦é—®é¢˜
-ssl._create_default_https_context = ssl._create_unverified_context
-information=urllib.request.urlopen(str(testurl)).read()
+    print(information)#Mark
 
-print(information)
+    isExist = '\"flag\":true' in str(information)
+    if(not(isExist)):
+        print("Ö¸¶¨ÈÕÆÚÃ»ÓĞ¿É´î³ËµÄ»ğ³µ")
+    else:
+        print("Ö¸¶¨ÈÕÆÚÓĞ¿É´î³ËµÄ»ğ³µ")
 
-#è¿‡æ»¤ç»“æœ
-##è¿‡æ»¤ ->"message":"æ²¡æœ‰ç¬¦åˆæ¡ä»¶çš„æ•°æ®ï¼"
+    #¹ıÂË½á¹û
+    ##¹ıÂË ->"message":"Ã»ÓĞ·ûºÏÌõ¼şµÄÊı¾İ£¡"
 
-#è¾“å‡ºç»“æœ
+    #Êä³ö½á¹û
+

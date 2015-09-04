@@ -1,22 +1,14 @@
-#-*- coding:utf8 -*-
+#!/usr/bin/env python
+# -*- coding: gbk -*
+
 import time
 import json
-
-'''
-def _init():
-    with open('Station.ini', 'r') as s:
-        text = s.readline()
-        names = json.loads(text)
-    print(names['è¯å®‰'])
-    print('æ‹œå±±' in names)
-'''
-
+import datetime
 
 def StartStation():
-    print("è¯·è¾“å…¥èµ·å§‹ç«™ç‚¹:")#å°è¯•ç”¨APIåˆ†æå½“å‰åœ°å€
+    print("ÇëÊäÈëÆğÊ¼Õ¾µã:") #³¢ÊÔÓÃAPI·ÖÎöµ±Ç°µØÖ·
     from_station = input()
     from_station=str(from_station)
-
     with open('Station.ini', 'r') as s:
         text = s.readline()
         names = json.loads(text)
@@ -24,19 +16,25 @@ def StartStation():
     return names[from_station]
 
 def EndStation():
-    print("è¯·è¾“å…¥ç›®æ ‡ç«™ç‚¹:")#å°è¯•ç”¨APIåˆ†æå½“å‰åœ°å€
+    print("ÇëÊäÈëÄ¿±êÕ¾µã:") #³¢ÊÔÓÃAPI·ÖÎöµ±Ç°µØÖ·
     to_station = input()
     to_station=str(to_station)
-
     with open('Station.ini', 'r') as s:
         text = s.readline()
         names = json.loads(text)
-    print(names[to_station])#del
+    print(names[to_station]) #del
     return names[to_station]
 
-def TodayTime():
-    todaytime=time.strftime("%Y-%m-%d")
-    print(todaytime)
-    return todaytime
+def QueryDate():
+    print("ÇëÑ¡Ôñ²éÑ¯ÈÕÆÚ 1.½ñÌì 2.Ã÷Ìì 3.×Ô¶¨Òå(¸ñÊ½:Äê-ÔÂ-ÈÕ)")
+    choose = input()
+    if(choose == '1'):
+        QueryDate=time.strftime("%Y-%m-%d")
+    elif(choose == '2'):
+        today = datetime.date.today()
+        QueryDate = today + datetime.timedelta(days=1)
+    else:
+        QueryDate = input()
+    print(QueryDate)
+    return str(QueryDate)
 
-pass

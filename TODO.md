@@ -1,5 +1,8 @@
 https://kyfw.12306.cn/otn/lcxxcx/query?purpose_codes=ADULT&queryDate=2015-09-03&from_station=ZDS&to_station=XKS
 
 #自动查票
+#学生票暂不考虑,反正买不了票数据也一样....
+#选取几天的票余量排序
+#选取指定时间段
 
 {"validateMessagesShowId":"_validatorMessage","status":true,"httpstatus":200,"data":{"datas":[{"train_no":"490000G24410","station_train_code":"G244","start_station_telecode":"QDK","start_station_name":"青岛","end_station_telecode":"XKS","end_station_name":"厦门北","from_station_telecode":"QDK","from_station_name":"青岛","to_station_telecode":"XKS","to_station_name":"厦门北","start_time":"08:13","arrive_time":"20:58","day_difference":"0","train_class_name":"","lishi":"12:45","canWebBuy":"Y","lishiValue":"765","yp_info":"O077800242M121650064P146100009","control_train_day":"20300628","start_train_date":"20150903","seat_feature":"O3M3P3","yp_ex":"O0M0P0","train_seat_feature":"3","seat_types":"OMP","location_code":"K1","from_station_no":"01","to_station_no":"27","control_day":59,"sale_time":"0930","is_support_card":"0","note":"","gg_num":"--","gr_num":"--","qt_num":"--","rw_num":"--","rz_num":"--","tz_num":"9","wz_num":"--","yb_num":"--","yw_num":"--","yz_num":"--","ze_num":"242","zy_num":"64","swz_num":"--"}],"flag":true,"searchDate":"2015年09月03号&nbsp;&nbsp;周四"},"messages":[],"validateMessages":{}}

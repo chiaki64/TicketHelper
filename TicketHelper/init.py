@@ -9,18 +9,17 @@ import http.cookiejar
 
 if(not(TicketHelper.connect.connect())):
     print("No network Connection.")
+    exit()
 else:
-    print("No network Connection.")
-
-pass
-
+    pass
 
 #获取站点…&日期
 from_station = TicketHelper.Station.StartStation()
 to_station = TicketHelper.Station.EndStation()
 queryDate = TicketHelper.Station.TodayTime()
+
 #目标链接
-testurl='https://kyfw.12306.cn/otn/lcxxcx/query?purpose_codes=ADULT&queryDate='+queryDate+'&from_station='+'ZDS'+'&to_station='+'XKS'
+testurl='https://kyfw.12306.cn/otn/lcxxcx/query?purpose_codes=ADULT&queryDate='+queryDate+'&from_station='+from_station+'&to_station='+to_station
 print(testurl)
 
 #证书问题
@@ -30,5 +29,6 @@ information=urllib.request.urlopen(str(testurl)).read()
 print(information)
 
 #过滤结果
+##过滤 ->"message":"没有符合条件的数据！"
 
 #输出结果

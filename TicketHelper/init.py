@@ -45,12 +45,16 @@ else:
 
     if(content['data']['flag']):
         ticketInfo=content['data']['datas']
-        print(ticketInfo)
+        print("车票信息:",ticketInfo,"\n")
+
+        for item in ticketInfo:
+            print("车次",item["station_train_code"],"历时",item["lishi"],"一等座",item["zy_num"],"价格","二等座",item["ze_num"],
+                  "价格","无座",item["wz_num"],"价格")
+            #print(item)
+
     else:
         print("指定日期没有可搭乘的火车")
         pass
-
-
 
     #过滤结果
     ##过滤 ->"message":"没有符合条件的数据！"

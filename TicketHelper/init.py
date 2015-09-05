@@ -48,8 +48,20 @@ else:
         print("车票信息:",ticketInfo,"\n")
 
         for item in ticketInfo:
-            print("车次",item["station_train_code"],"历时",item["lishi"],"一等座",item["zy_num"],"价格","二等座",item["ze_num"],
-                  "价格","无座",item["wz_num"],"价格")
+            if(item["zy_num"]=='--'):
+                item["zy_num"]=''
+            if(item["zy_num"]=='无'):
+                item["zy_num"]='N'
+            if(item["ze_num"]=='--'):
+                item["ze_num"]=''
+            if(item["ze_num"]=='无'):
+                item["ze_num"]='N'
+            if(item["wz_num"]=='--'):
+                item["wz_num"]=''
+            if(item["wz_num"]=='无'):
+                item["wz_num"]='N'
+            print("车次",'%-5s' % item["station_train_code"],"历时",item["lishi"],"一等座",'%-3s' % item["zy_num"],"价格","二等座",'%-3s' % item["ze_num"],
+                  "价格","无座",'%-3s' % item["wz_num"],"价格")
             #print(item)
 
     else:

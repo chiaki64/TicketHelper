@@ -3,10 +3,12 @@
 
 import TicketHelper.connect
 import TicketHelper.Station
-import urllib.request
+import urllib
 import ssl
+import json
 import sys
 import http  #.cookiejar
+
 
 #判断网络环境
 if(not(TicketHelper.connect.connect())):
@@ -24,15 +26,31 @@ else:
 
     #证书问题
     ssl._create_default_https_context = ssl._create_unverified_context
-    information = urllib.request.urlopen(str(testurl)).read()
+    information = urllib.request.urlopen(str(testurl)).read().decode('utf-8')
 
     print(information)#Mark
 
+    '''
     isExist = '\"flag\":true' in str(information)
     if(not(isExist)):
         print("指定日期没有可搭乘的火车")
     else:
         print("指定日期有可搭乘的火车")
+    '''
+    print("0")
+    #    information=str(information)
+    #    print(information)
+    content = json.loads(information)
+    print(content)
+
+    if(content['data']['flag']):
+        ticketInfo=content['data']['datas']
+        print(ticketInfo)
+    else:
+        print("指定日期没有可搭乘的火车")
+        pass
+
+
 
     #过滤结果
     ##过滤 ->"message":"没有符合条件的数据！"

@@ -3,6 +3,7 @@
 
 import TicketHelper.connect
 import TicketHelper.Station
+#import TicketHelper.TicketPrice
 import urllib
 import ssl
 import json
@@ -60,7 +61,12 @@ else:
                 item["wz_num"]=''
             if(item["wz_num"]=='无'):
                 item["wz_num"]='N'
-            print("车次",'%-5s' % item["station_train_code"],"历时",item["lishi"],"一等座",'%-3s' % item["zy_num"],"价格","二等座",'%-3s' % item["ze_num"],
+
+
+          #  TicketHelper.TicketPrice.TicketPrice(item["train_no"],item["from_station_no"])
+
+
+            print("车次",'%-5s' % item["station_train_code"],"出发时间",item["start_time"],"历时",item["lishi"],"一等座",'%-3s' % item["zy_num"],"价格","二等座",'%-3s' % item["ze_num"],
                   "价格","无座",'%-3s' % item["wz_num"],"价格")
             #print(item)
 

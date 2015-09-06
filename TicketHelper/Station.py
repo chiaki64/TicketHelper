@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: gbk -*
+# @auther:Hieda no Chiaki <forblackking@gmail.com>
 
 import time
 import json
@@ -35,6 +36,6 @@ def QueryDate():
         QueryDate = today + datetime.timedelta(days=1)
     else:
         QueryDate = input()
-    print(QueryDate)
+    print("²éÑ¯ÈÕÆÚ ",QueryDate)
     return str(QueryDate)
 

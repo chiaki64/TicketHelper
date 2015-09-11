@@ -17,9 +17,7 @@ if(not(TicketHelper.connect.connect())):
     print("No network Connection.")
     exit()
 else:
-    #计时
-    time_start=time.time()
-    count=1;
+
     #获取站点&日期
     from_station = TicketHelper.Station.StartStation()
     to_station = TicketHelper.Station.EndStation()
@@ -35,14 +33,10 @@ else:
 
     print(information)#Mark
 
-    '''
-    isExist = '\"flag\":true' in str(information)
-    if(not(isExist)):
-        print("指定日期没有可搭乘的火车")
-    else:
-        print("指定日期有可搭乘的火车")
-    '''
-    print("0")
+    #计时
+    time_start=time.time()
+    count=0;
+
     #    information=str(information)
     #    print(information)
     content = json.loads(information)

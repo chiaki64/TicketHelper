@@ -34,7 +34,7 @@ class Station:
         print("请选择查询日期 1.今天 2.明天 3.自定义(格式:年-月-日)")
         self.choose = input()
         if self.choose == '1':
-            self.self.QueryDate=time.strftime("%Y-%m-%d")
+            self.QueryDate=time.strftime("%Y-%m-%d")
         elif self.choose == '2':
             today = datetime.date.today()
             self.QueryDate = today + datetime.timedelta(days=1)

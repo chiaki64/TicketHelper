@@ -11,19 +11,20 @@ class ConnectStatus:
         pass
 
     def connect(self):
-        is_online = False
+        print(type(self))
+        self.status = False
         try:
-            is_online = u'<title>' in urllib.request.urlopen("http://www.baidu.com", None, 4).read().decode('utf-8')
+            self.status = u'<title>' in urllib.request.urlopen("http://www.baidu.com", None, 4).read().decode('utf-8')
         except urllib.error.URLError as e:
             print("Network Connection Error : ", e, "\nPlease Check You Network Connection")
         finally:
-            if is_online:
+            if self.status:
                 return True
             else:
                 return False
 
 
-#   print(connect())
+# print(connect())
 
 if __name__ == '__main__':
     cs = ConnectStatus()

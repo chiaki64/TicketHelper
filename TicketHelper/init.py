@@ -2,18 +2,18 @@
 # -*- coding: gbk -*
 # @auther:Hieda no Chiaki <forblackking@gmail.com>
 
-import TicketHelper.Station
-import TicketHelper.TicketPrice
-#import TicketHelper.connect
-from TicketHelper.connect import ConnectStatus
 import urllib
 import ssl
 import json
 import time
+from TicketHelper.Station import Station
+from TicketHelper.connect import ConnectStatus
+from TicketHelper.TicketPrice import TicketPrice
 
-#ConnectStatus = TicketHelper.connect.ConnectStatus()
-Station = TicketHelper.Station.Station()
-Price = TicketHelper.TicketPrice.TicketPrice()
+
+ConnectStatus = ConnectStatus()
+Station = Station()
+Price = TicketPrice()
 
 #   判断网络环境
 if not(ConnectStatus.connect()):
@@ -27,26 +27,26 @@ else:
 
     #   目标链接
     targeturl = 'https://kyfw.12306.cn/otn/lcxxcx/query?purpose_codes=ADULT&queryDate='+queryDate+'&from_station='+from_station+'&to_station='+to_station
-    #   print(targeturl)
+    # print(targeturl)
 
     #   证书问题
     ssl._create_default_https_context = ssl._create_unverified_context
     information = urllib.request.urlopen(str(targeturl)).read().decode('utf-8')
 
-    #   print(information)#Mark
+    # print(information)#Mark
 
-    #   information=str(information)
-    #   print(information)
+    # information=str(information)
+    # print(information)
     content = json.loads(information)
-    #   print(content)
+    # print(content)
 
     #   计时
-    time_start=time.time()
-    count = 0;
+    time_start = time.time()
+    count = 0
 
     if content['data']['flag']:
         ticketInfo=content['data']['datas']
-        #   print("车票信息:",ticketInfo,"\n")
+        # print("车票信息:",ticketInfo,"\n")
 
         for item in ticketInfo:
             if item["zy_num"] == '--':
@@ -64,10 +64,10 @@ else:
 
             start_train_date = str(item["start_train_date"])
             start_train_date = start_train_date[:4]+'-'+start_train_date[4:6]+'-'+start_train_date[6:]
-            #   print(start_train_date)
+            # print(start_train_date)
 
             ticketcontent = Price.TicketPrice(item["train_no"],item["from_station_no"],item["to_station_no"],item["seat_types"],start_train_date)
-            #   print(ticketcontent)
+            # print(ticketcontent)
             price = ticketcontent['data']
 
             if 'M' in price:
@@ -87,7 +87,7 @@ else:
 
             print("车次",'%-5s' % item["station_train_code"],"出发时间",item["start_time"],"到达时间",item["arrive_time"],"一等座",'%-3s' % item["zy_num"],'￥'+'%-6s' % M_price,"二等座",'%-3s' % item["ze_num"],
                   '￥'+'%-6s' % O_price,"无座",'%-3s' % item["wz_num"],'￥'+'%-6s' % WZ_price)
-            #   print(item)
+            # print(item)
             count = 1 + int(count)
 
     else:

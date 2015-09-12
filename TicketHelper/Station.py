@@ -8,19 +8,25 @@ import datetime
 
 class Station:
     def __init__(self):
+        self.from_station = None
+        self.text = None
+        self.names = None
+        self.to_station = None
+        self.choose = None
+        self.QueryDate = None
         pass
 
-    def StartStation(self):
+    def startstation(self):
         print("请输入起始站点:")  # 尝试用API分析当前地址
         self.from_station = input()
-        self.from_station=str(self.from_station)
+        self.from_station = str(self.from_station)
         with open('Station.ini', 'r') as self.s:
             self.text = self.s.readline()
             self.names = json.loads(self.text)
         print(self.names[self.from_station])  # del
         return self.names[self.from_station]
 
-    def EndStation(self):
+    def endstation(self):
         print("请输入目标站点:")  # 尝试用API分析当前地址
         self.to_station = input()
         self.to_station=str(self.to_station)
@@ -30,7 +36,7 @@ class Station:
         print(names[self.to_station])  # del
         return names[self.to_station]
 
-    def QueryDate(self):
+    def querydate(self):
         print("请选择查询日期 1.今天 2.明天 3.自定义(格式:年-月-日)")
         self.choose = input()
         if self.choose == '1':

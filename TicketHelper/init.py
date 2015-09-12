@@ -27,9 +27,9 @@ class init:
             exit()
         else:
             #   获取站点&日期
-            from_station = Station.StartStation()
-            to_station = Station.EndStation()
-            queryDate = Station.QueryDate()
+            from_station = Station.startstation()
+            to_station = Station.endstation()
+            queryDate = Station.querydate()
 
         #   目标链接
         targeturl = 'https://kyfw.12306.cn/otn/lcxxcx/query?purpose_codes=ADULT&queryDate='+queryDate+'&from_station='+from_station+'&to_station='+to_station
@@ -48,14 +48,15 @@ class init:
 
         #   输出获取结果
         if content['data']['flag']:
-            ticketInfo=content['data']['datas']
-            count = Printf.printf(ticketInfo)
+            ticketinfo = content['data']['datas']
+            count = Printf.printf(ticketinfo)
 
         else:
             print("指定日期没有可搭乘的火车")
         pass
 
         time_end=time.time()
+
         print("本次搜索共耗时", '%.3f' % (time_end-time_start), "秒,获得", count, "条结果")
         #   过滤结果
         #   过滤 ->"message":"没有符合条件的数据！"

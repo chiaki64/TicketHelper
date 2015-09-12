@@ -4,14 +4,14 @@
 
 import TicketHelper.Station
 import TicketHelper.TicketPrice
-import TicketHelper.connect
-#   from TicketHelper.connect import ConnectStatus
+#import TicketHelper.connect
+from TicketHelper.connect import ConnectStatus
 import urllib
 import ssl
 import json
 import time
 
-ConnectStatus = TicketHelper.connect.ConnectStatus()
+#ConnectStatus = TicketHelper.connect.ConnectStatus()
 Station = TicketHelper.Station.Station()
 Price = TicketHelper.TicketPrice.TicketPrice()
 
